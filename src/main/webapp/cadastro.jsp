@@ -15,8 +15,8 @@
        String id = request.getParameter("id");
        if(id != null){
     	  out.print("<h1>Editar cliente:" + id +"</h1>");
-    	  int idcliente = Integer.parseInt(id.replace("/",""));
-          cliente = new DaoCliente().getById(idcliente);
+    	  //int idcliente = Integer.parseInt(id.replace("/",""));
+          cliente = new DaoCliente().getById(Integer.parseInt(id));
        }
        else{
     	   out.print("<h1>Novo registro</h1>");
@@ -31,13 +31,13 @@
       <a href="#">Consulta Produto</a>
    </div>
 	<form method="POST" action="./cadastro.jsp">
-        <input type="hidden" name="id" value=<%= cliente.getId() %>/>
+        <input type="hidden" name="id" value="<%= cliente.getId() %>"/>
 		<Label for="nome">Informe nome</Label> 
 		<input 
 		    type="text" id="nome"
 		    name="nome"
 			placeholder="Informe nome"
-			value=<%= cliente.getNome() %>
+			value="<%= cliente.getNome() %>"
 			 />
 		
 		<Label for="email">Informe email</Label> 
@@ -63,7 +63,8 @@
 		    cliente.setEmail(email);
 		    
 		    out.print("<p>"+id+"</p>");
-		    int idcliente = Integer.parseInt(id.replace("/",""));
+		    //int idcliente = Integer.parseInt(id.replace("/",""));
+		    int idcliente = Integer.parseInt(id);
 		    if(idcliente > 0){
 		    	cliente.setId(idcliente);
 		    	new ClienteControler().update(cliente);	
