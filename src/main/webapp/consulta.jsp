@@ -26,7 +26,8 @@
 				<th>Id</th>
 				<th>Nome</th>
 				<th>Email</th>
-				<th>Ações</th>
+				<th>Ediçaõ</th>
+				<th>Excluir</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -38,6 +39,7 @@
 				out.print("<td>" + c.getNome() + "</td>");
 				out.print("<td>" + c.getEmail() + "</td>");
 				out.print("<td><a href='cadastro.jsp?id="+c.getId()+"'>editar</a></td>");
+				out.print("<td><a href='excluir.jsp?id="+c.getId()+"'>excluir</a></td>");
 				out.print("</tr>");
 			}
 			%>

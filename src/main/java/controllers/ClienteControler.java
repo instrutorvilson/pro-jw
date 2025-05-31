@@ -22,4 +22,13 @@ public class ClienteControler {
 			throw new RuntimeException(e.getMessage());
 		}
 	}
+	
+	public void delete(Cliente cliente) {
+		try {
+			//valida regras de negócio
+		  new DaoCliente().delete(cliente.getId());			
+		}catch(Exception e) {
+			throw new RuntimeException(e.getMessage());
+		}
+	}
 }

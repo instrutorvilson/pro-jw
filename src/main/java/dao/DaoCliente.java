@@ -46,8 +46,14 @@ public class DaoCliente implements CRUD<Cliente> {
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		try{
+			String sql = "delete from tb_clientes where id = ?";
+	    	PreparedStatement stm = ConexaoDB.getConexao().prepareStatement(sql);
+	    	stm.setInt(1, id);
+	    	stm.execute();
+	    }catch(Exception e) {
+	    	throw new RuntimeException(e.getMessage());
+	    }		
 	}
 
 	@Override
