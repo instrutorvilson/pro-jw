@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Novo registro</h1>
+	<div>
+      <a href="index.html">Home</a>
+      <a href="cadastro.jsp">Cadastro Cliente</a>
+      <a href="consulta.jsp">Consulta Cliente</a>
+      <a href="cadproduto.html">Cadastro Produto</a>
+      <a href="consultaproduto.jsp">Consulta Produto</a>
+   </div>
+	<form method="POST" action="./cadproduto.jsp" id="fcad">
+		<Label for="descricao">Informe descrição</Label> 
+		<input 
+		    type="text" id="descricao"
+		    name="descricao"
+			placeholder="Informe descricao" />
+		
+		<Label for="preco">Informe preço</Label> 
+		<input type="text" id="preco"
+		    name="preco"
+			placeholder="Informe preco"
+		/>	
+			
+		<input type="button" value="Gravar" onclick="gravar()">
+	</form>  
+	<script>
+	    function gravar(){
+	    	var descricao = document.getElementById("descricao")
+	    	
+	    	if(descricao.value === ""){
+	    		alert("informe descrição")
+	    		descricao.focus()
+	    		return
+	    	}
+	    	
+	    	document.getElementById("fcad").submit()
+	    }
+	</script>  
+</body>
+</html>
