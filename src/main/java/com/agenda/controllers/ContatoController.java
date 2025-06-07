@@ -21,7 +21,7 @@ import com.agenda.services.ContatoService;
 @RestController
 @RequestMapping("/contatos")
 public class ContatoController {
-	private static List<Contato> contatos = new ArrayList();
+	private static List<Contato> contatos = new ArrayList<Contato>();
 	@Autowired
 	private ContatoService service;
     
@@ -50,8 +50,8 @@ public class ContatoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Object> delete(@PathVariable("id") int id) {
-		for(Contato ct : contatos) {
+	public ResponseEntity<Object> delete(@PathVariable("id") long id) {
+		/*for(Contato ct : contatos) {
 			if(ct.getId() == id) {
 				contatos.remove(ct);
 				return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -60,18 +60,30 @@ public class ContatoController {
 		return ResponseEntity
 				.status(HttpStatus.NOT_FOUND)
 				.body("Contato não encontrado");
+				*/
+		try {
+			service.delete(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		}
+		catch (Exception e) {
+			return ResponseEntity
+					.status(HttpStatus.NOT_FOUND)
+					.body(e.getMessage());
+		}
 	}
 	
 	@PostMapping
 	public ResponseEntity<Contato> inserir(@RequestBody Contato contato) {
-		return ResponseEntity.ok(service.salvar(contato));
+		return ResponseEntity
+				.status(HttpStatus.CREATED)
+				.body(service.salvar(contato));
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> update(
-			@PathVariable("id") int id, 
+			@PathVariable("id") long id, 
 			@RequestBody Contato contato){
-		Contato ctAlterar = new Contato();
+		/*Contato ctAlterar = new Contato();
 		for(Contato ct : contatos) {
 			if(ct.getId() == id) {
 				ctAlterar = ct;
@@ -87,6 +99,15 @@ public class ContatoController {
 		return ResponseEntity
 				.status(HttpStatus.NOT_FOUND)
 				.body("Contato não encontrado");
+				*/
+		try {
+			return ResponseEntity.ok(service.update(id, contato));
+		}
+		catch (Exception e) {
+			return ResponseEntity
+					.status(HttpStatus.NOT_FOUND)
+					.body(e.getMessage());
+		}
 		
 	}
 }

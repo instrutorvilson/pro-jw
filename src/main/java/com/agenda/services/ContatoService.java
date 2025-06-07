@@ -18,6 +18,20 @@ public class ContatoService {
 		return repository.findAll();
 	}
 	
+	public void delete(Long id) {
+		Contato ct = getOne(id);
+		repository.delete(ct);
+	}
+	
+	public Contato update(Long id, Contato contato) {
+		Contato ct = getOne(id);
+		
+		ct.setNome(contato.getNome());
+	    ct.setEmail(contato.getEmail());
+	    
+		return repository.save(ct);
+	}
+	
 	public Contato salvar(Contato contato) {
 		//fazer validações
 		return repository.save(contato);
@@ -27,4 +41,6 @@ public class ContatoService {
 		Optional<Contato> opt = repository.findById(id);
 	    return opt.orElseThrow(()-> new RuntimeException("contato não encontrado"));
 	}
+	
+	
 }
