@@ -73,10 +73,17 @@ public class ContatoController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Contato> inserir(@RequestBody Contato contato) {
-		return ResponseEntity
-				.status(HttpStatus.CREATED)
-				.body(service.salvar(contato));
+	public ResponseEntity<Object> inserir(@RequestBody Contato contato) {
+		try {
+			return ResponseEntity
+					.status(HttpStatus.CREATED)
+					.body(service.salvar(contato));
+		}
+		catch (Exception e) {
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body(e.getMessage());
+		}
 	}
 	
 	@PutMapping("/{id}")
@@ -103,11 +110,17 @@ public class ContatoController {
 		try {
 			return ResponseEntity.ok(service.update(id, contato));
 		}
-		catch (Exception e) {
+		catch (RuntimeException e) {
 			return ResponseEntity
 					.status(HttpStatus.NOT_FOUND)
 					.body(e.getMessage());
 		}
+		catch (Exception e) {
+			return ResponseEntity
+					.status(HttpStatus.BAD_REQUEST)
+					.body(e.getMessage());
+		}
+		
 		
 	}
 }
