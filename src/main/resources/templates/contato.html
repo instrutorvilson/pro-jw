@@ -15,12 +15,14 @@
 			<tr>
 				<td>Nome</td>
 				<td>Email</td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
 		   <tr th:each="item : ${lista}">
 		       <td th:text="${item.nome}"></td>
 		       <td th:text="${item.email}"></td>
+		       <td><a th:href="@{'/excluir/'+${item.id}}">Excluir</a></td>
 		   </tr>
 		</tbody>
 	</table>
