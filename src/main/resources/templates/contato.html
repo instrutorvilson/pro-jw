@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Contatos</h1>
+	<!--  <ol>
+    <li th:each="item : ${lista}" th:text="${item}">Nome</li>
+  </ol>
+  -->
+	<table>
+		<thead>
+			<tr>
+				<td>Nome</td>
+				<td>Email</td>
+			</tr>
+		</thead>
+		<tbody>
+		   <tr th:each="item : ${lista}">
+		       <td th:text="${item.nome}"></td>
+		       <td th:text="${item.email}"></td>
+		   </tr>
+		</tbody>
+	</table>
+</body>
+</html>
