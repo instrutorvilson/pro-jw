@@ -1,18 +1,28 @@
 package com.aula.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.aula.modelos.Contato;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.aula.modelos.Contato;
+import com.aula.repositories.ContatoRepository;
+
+@Service
 public class ContatoDao {
-   private static List<Contato> lista = new ArrayList<Contato>();
+  // private static List<Contato> lista = new ArrayList<Contato>();
    
-   public static void add(Contato contato) {
-	   lista.add(contato);
+   @Autowired
+   private  ContatoRepository repository;
+    
+   public  void add(Contato contato) {
+	 //  lista.add(contato);
+	   repository.save(contato);
    }
    
-   public static List<Contato> getAll(){
-	   return lista;
-   }
+   public  List<Contato> getAll(){
+	   return repository.findAll();
+}
+   
+   
 }

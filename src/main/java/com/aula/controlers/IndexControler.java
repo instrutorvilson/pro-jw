@@ -1,5 +1,6 @@
 package com.aula.controlers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,9 @@ import com.aula.modelos.Contato;
 
 @Controller
 public class IndexControler {
+	
+	@Autowired
+	private ContatoDao cdao;
 
 	@GetMapping("/novoContato")
 	public String novoContato(Model model) {
@@ -20,7 +24,7 @@ public class IndexControler {
 	
 	@PostMapping("/saveContato")
 	public String saveContato(@ModelAttribute Contato contato) {
-		ContatoDao.add(contato);
+		cdao.add(contato);
 		return "redirect:contato";
 	}
 
@@ -32,7 +36,7 @@ public class IndexControler {
 	
 	@GetMapping("/contato")
 	public String get(Model model) {
-		model.addAttribute("lista", ContatoDao.getAll());
+		model.addAttribute("lista", cdao.getAll());
 		return "contato";
 	}
 	
