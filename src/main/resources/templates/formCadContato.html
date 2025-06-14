@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+     <h1>Novo contato</h1>
+     <form th:action="@{/saveContato}" method="POST" th:object="${contato}">
+         <label>Informe nome</label>
+         <input type="text" placeholder="EX: maria" th:field="*{nome}"/>
+         
+         <label>Informe email</label>
+         <input type="text" placeholder="EX: maria@gmail.com" th:field="*{email}" />
+         
+         <button>Gravar</button>
+     </form>
+</body>
+</html>
