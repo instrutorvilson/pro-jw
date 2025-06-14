@@ -17,7 +17,14 @@ public class ContatoDao {
 
 	public void add(Contato contato) {
 		// lista.add(contato);
-		repository.save(contato);
+		if(contato.getId() != null) {
+			Contato contatoExistente = repository.getById(contato.getId());
+			contatoExistente.setNome(contato.getNome());
+			contatoExistente.setEmail(contato.getEmail());
+			repository.save(contatoExistente);
+		}
+		else
+		  repository.save(contato);
 	}
 
 	public List<Contato> getAll() {
@@ -28,4 +35,7 @@ public class ContatoDao {
 		repository.deleteById(id);
 	}
 	
+	public Contato getById(Long id) {
+		return repository.getById(id);
+	}
 }

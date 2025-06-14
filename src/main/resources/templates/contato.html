@@ -16,6 +16,7 @@
 				<td>Nome</td>
 				<td>Email</td>
 				<td></td>
+				<td></td>
 			</tr>
 		</thead>
 		<tbody>
@@ -23,6 +24,7 @@
 		       <td th:text="${item.nome}"></td>
 		       <td th:text="${item.email}"></td>
 		       <td><a th:href="@{'/excluir/'+${item.id}}">Excluir</a></td>
+		       <td><a th:href="@{'/editar/'+${item.id}}">Editar</a></td>
 		   </tr>
 		</tbody>
 	</table>

@@ -5,8 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-     <h1>Novo contato</h1>
+     <h1 th:text="${contato.id == null ? 'Novo contato' : 'Editar contato'}"></h1>
      <form th:action="@{/saveContato}" method="POST" th:object="${contato}">
+         <input type="hidden" th:field="*{id}"/>
          <label>Informe nome</label>
          <input type="text" placeholder="EX: maria" th:field="*{nome}"/>
          

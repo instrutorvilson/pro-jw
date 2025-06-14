@@ -17,6 +17,13 @@ public class IndexControler {
 	@Autowired
 	private ContatoDao cdao;
 
+	@GetMapping("/editar/{id}")
+	public String editar(@PathVariable Long id, Model model) {
+		Contato contato = cdao.getById(id);
+		model.addAttribute("contato", contato);
+		return "formCadContato";
+	}
+	
 	@GetMapping("/excluir/{id}")
 	public String delete(@PathVariable Long id) {
 		cdao.delete(id);
