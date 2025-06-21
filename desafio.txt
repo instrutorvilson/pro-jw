@@ -1,0 +1,11 @@
+Criar uma agenda eletronica
+-> contatos
+   -> id, nome, fone, email.
+-> compromissos
+  -> id, local, data, hora, descricao, contato.
+
+-> Para cadastrar compromissos o usuario deve estar logado
+
+-> usuario pode listar somente os seus compromissos
+
+
