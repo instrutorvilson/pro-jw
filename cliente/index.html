@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="salvar()">Inserir</button>
+    <button onclick="consultar()">Consultar</button>
+
+    <script>
+        const data = { nome: 'teste', email:'teste@gmail.com'}
+        function salvar(){
+             fetch('http://localhost:8080/usuario/cadastrar',
+               {
+                 method: 'POST',
+                 headers:{
+                    'Content-Type': 'application/json',
+                    "Authorization": "Basic " + btoa("admin:1234")
+                 },
+                 body: JSON.stringify(data),
+                 credentials: "include"
+                }                
+            )
+            .then( data => data.json())
+            .then( resp => console.log(resp))
+        }
+
+         function consultar(){
+             fetch('http://localhost:8080/usuario/consultar')              
+            .then( data => data.json())
+            .then( resp => console.log(resp))
+        }
+    </script>
+</body>
+</html>
