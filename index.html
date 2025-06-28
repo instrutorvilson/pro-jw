@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="gravar()">gravar</button>
+    <button onclick="consultar()">consultar</button>
+    
+    <script>
+        function gravar(){
+            const data = { nome:'maria', email:'maria@gmail.com' }
+            fetch('http://localhost:8080/api/v1/contatos/inserir',{
+                 headers: {
+                    "Content-type": "application/json;charset=UTF-8",
+                    "Authorization": "Basic " + btoa("admin:1234")
+                },
+                 method: 'POST',
+                 body: JSON.stringify(data),
+                 credentials:"include"
+            })
+        }
+
+        function consultar(){
+           fetch('http://localhost:8080/api/v1/contatos/consultar') 
+           .then(resp => resp.json())
+           .then(data => console.log(data))
+        }
+    </script>
+</body>
+</html>
